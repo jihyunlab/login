@@ -14,6 +14,6 @@ export class User {
   @Column()
   name: string;
 
-  @Column()
-  role: string;
+  @Column('text', { array: true })
+  role: string[];
 }
