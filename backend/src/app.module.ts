@@ -42,7 +42,7 @@ import { UserModule } from './module/user/user.module';
     ConfigModule.forRoot({ envFilePath: [`${process.cwd()}/.env`], isGlobal: true }),
     TypeOrmModule.forRoot({
       ...OrmDataSource.options,
-      // migrationsRun: true,
+      migrationsRun: true,
       autoLoadEntities: true,
       keepConnectionAlive: true,
     }),

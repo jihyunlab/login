@@ -12,13 +12,18 @@ export class UserService {
   ) {}
 
   async add(dto: UserAddReqDto): Promise<string | undefined | null> {
-    const user = await this.userRepository.save({
-      email: dto.email,
-      password: dto.password,
-      name: dto.name,
-      role: dto.role,
-    });
+    try {
+      const result = await this.userRepository
+        .createQueryBuilder()
+        .insert()
+        .into(User)
+        .values([{ email: dto.email, password: dto.password, name: dto.name, role: dto.role }])
+        .execute();
 
-    return '';
+      return result.identifiers[0].id;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
 }
