@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { User } from '../../../entity/user.entity';
 import { UserAddReqDto } from '../dtos/add.dto';
@@ -7,7 +8,10 @@ import { UserDeleteReqDto } from '../dtos/delete.dto';
 
 @Injectable()
 export class UserService {
-  constructor(private dataSource: DataSource) {}
+  constructor(
+    @InjectDataSource('UserConnection')
+    private dataSource: DataSource
+  ) {}
 
   async add(dto: UserAddReqDto): Promise<string | undefined | null> {
     try {

@@ -1,8 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { OrmDataSource } from './orm.config';
 import { UserModule } from './module/user/user.module';
+
+const OrmModuleOptions: TypeOrmModuleOptions = {
+  ...OrmDataSource.options,
+  autoLoadEntities: true,
+  keepConnectionAlive: true,
+  // migrationsRun: true,
+};
 
 /**
  * PostgreSQL Preferences
@@ -40,12 +47,7 @@ import { UserModule } from './module/user/user.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ envFilePath: [`${process.cwd()}/.env`], isGlobal: true }),
-    TypeOrmModule.forRoot({
-      ...OrmDataSource.options,
-      autoLoadEntities: true,
-      keepConnectionAlive: true,
-      // migrationsRun: true,
-    }),
+    TypeOrmModule.forRoot({ ...OrmModuleOptions, name: 'UserConnection' }),
     UserModule,
   ],
 })

@@ -13,10 +13,10 @@ const OrmDataSourceOptions: DataSourceOptions = {
   username: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
   synchronize: false,
-  logging: true,
   entities: [User],
   migrations: [CreateUser1677954928176],
   migrationsTableName: 'migrations',
+  // logging: true,
 };
 
 export const OrmDataSource = new DataSource(OrmDataSourceOptions);
