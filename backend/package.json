@@ -37,7 +37,7 @@
     "typeorm": "^0.3.12"
   },
   "devDependencies": {
-    "@jihyunlab/eslint-config": "^1.0.4",
+    "@jihyunlab/eslint-config": "^1.0.5",
     "@jihyunlab/prettier-config": "^1.0.3",
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
