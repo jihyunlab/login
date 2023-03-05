@@ -1,23 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { User } from 'src/entity/user.entity';
+import { DataSource } from 'typeorm';
+import { User } from '../../../entity/user.entity';
 import { UserAddReqDto } from '../dtos/add.dto';
 import { UserChangeReqDto } from '../dtos/change.dto';
 import { UserDeleteReqDto } from '../dtos/delete.dto';
 
 @Injectable()
 export class UserService {
-  constructor(
-    @InjectRepository(User)
-    private userRepository: Repository<User>
-  ) {}
+  constructor(private dataSource: DataSource) {}
 
   async add(dto: UserAddReqDto): Promise<string | undefined | null> {
     try {
-      const result = await this.userRepository
-        .createQueryBuilder()
+      const queryBuilder = this.dataSource.createQueryBuilder();
+      const result = await queryBuilder
         .insert()
+        .into(User)
         .values([{ email: dto.email, password: dto.password, name: dto.name, role: dto.role }])
         .execute();
 
@@ -30,7 +27,8 @@ export class UserService {
 
   async list(): Promise<any> {
     try {
-      return await this.userRepository.createQueryBuilder().select().getMany();
+      const queryBuilder = this.dataSource.createQueryBuilder();
+      return await queryBuilder.select(['user.email', 'user.name', 'user.role']).from(User, 'user').getMany();
     } catch (error) {
       console.log(error);
       return null;
@@ -53,12 +51,8 @@ export class UserService {
         json['role'] = dto.role;
       }
 
-      const result = await this.userRepository
-        .createQueryBuilder()
-        .update()
-        .set(json)
-        .where('email = :email', { email: dto.email })
-        .execute();
+      const queryBuilder = this.dataSource.createQueryBuilder();
+      const result = await queryBuilder.update(User).set(json).where('email = :email', { email: dto.email }).execute();
 
       return result.affected?.toString();
     } catch (error) {
@@ -69,11 +63,8 @@ export class UserService {
 
   async delete(dto: UserDeleteReqDto): Promise<string | undefined | null> {
     try {
-      const result = await this.userRepository
-        .createQueryBuilder()
-        .delete()
-        .where('email = :email', { email: dto.email })
-        .execute();
+      const queryBuilder = this.dataSource.createQueryBuilder();
+      const result = await queryBuilder.delete().from(User).where('email = :email', { email: dto.email }).execute();
 
       if (!result) {
         return undefined;
