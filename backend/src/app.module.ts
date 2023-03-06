@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { OrmDataSource } from './orm.config';
+import { LoggerMiddleware } from './common/middlewares/logger.middleware';
 import { UserModule } from './module/user/user.module';
 
 const OrmModuleOptions: TypeOrmModuleOptions = {
@@ -51,9 +52,8 @@ const OrmModuleOptions: TypeOrmModuleOptions = {
     UserModule,
   ],
 })
-export class AppModule {}
-// export class AppModule implements NestModule {
-//   configure(consumer: MiddlewareConsumer) {
-//     consumer.apply(LoggerMiddleware).forRoutes('*');
-//   }
-// }
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
+}

@@ -1,7 +1,7 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import * as dotenv from 'dotenv';
 import { User } from './entity/user.entity';
-import { CreateUser1677954928176 } from './migration/1677954928176-CreateUser';
+import { CreateUser1678018200391 } from './migration/1678018200391-CreateUser';
 
 dotenv.config();
 
@@ -14,9 +14,9 @@ const OrmDataSourceOptions: DataSourceOptions = {
   password: process.env.DATABASE_PASSWORD,
   synchronize: false,
   entities: [User],
-  migrations: [CreateUser1677954928176],
+  migrations: [CreateUser1678018200391],
   migrationsTableName: 'migrations',
-  // logging: true,
+  logging: true,
 };
 
 export const OrmDataSource = new DataSource(OrmDataSourceOptions);
