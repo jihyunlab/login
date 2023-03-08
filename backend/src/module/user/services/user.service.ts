@@ -5,6 +5,8 @@ import { User } from '../../../entity/user.entity';
 import { UserAddReqDto } from '../dtos/add.dto';
 import { UserChangeReqDto } from '../dtos/change.dto';
 import { UserDeleteReqDto } from '../dtos/delete.dto';
+import * as bcrypt from 'bcrypt';
+import { UserRole } from '../enums/role.enum';
 
 @Injectable()
 export class UserService {
@@ -15,11 +17,13 @@ export class UserService {
 
   async add(dto: UserAddReqDto): Promise<string | undefined | null> {
     try {
+      const hashedPassword = bcrypt.hashSync(dto.password, Number(process.env.BCRYPT_ROUND) || '');
+
       const queryBuilder = this.dataSource.createQueryBuilder();
       const result = await queryBuilder
         .insert()
         .into(User)
-        .values([{ email: dto.email, password: dto.password, name: dto.name, role: dto.role }])
+        .values([{ email: dto.email, password: hashedPassword, name: dto.name, role: dto.role }])
         .execute();
 
       return result.identifiers[0].id;
@@ -39,8 +43,16 @@ export class UserService {
     }
   }
 
-  async change(dto: UserChangeReqDto): Promise<string | undefined | null> {
+  async change(reqUser: any, dto: UserChangeReqDto): Promise<string | undefined | null> {
     try {
+      if (!reqUser || !reqUser.role) {
+        return null;
+      }
+
+      if (reqUser.role !== UserRole.ADMIN && reqUser.email !== dto.email) {
+        return null;
+      }
+
       const json: any = {};
 
       if (dto.name) {
@@ -48,10 +60,12 @@ export class UserService {
       }
 
       if (dto.password) {
-        json['password'] = dto.password;
+        const hashedPassword = bcrypt.hashSync(dto.password, Number(process.env.BCRYPT_ROUND) || '');
+
+        json['password'] = hashedPassword;
       }
 
-      if (dto.role) {
+      if (dto.role && reqUser.role === UserRole.ADMIN) {
         json['role'] = dto.role;
       }
 

@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { User } from '../../../entity/user.entity';
-import { AuthLoginReqDto } from '../dtos/login.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -21,7 +21,7 @@ export class AuthService {
       .where('user.email = :email', { email: email })
       .getOne();
 
-    if (user && user.password === password) {
+    if (user && user.password && bcrypt.compareSync(password, user.password)) {
       return user;
     }
 
