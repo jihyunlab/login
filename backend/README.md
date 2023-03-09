@@ -1,2 +1,2 @@
-# @jihyunlab/login Backend
+# @jihyunlab/login backend
 JihyunLab Login Backend.
