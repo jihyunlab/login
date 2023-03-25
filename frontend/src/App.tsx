@@ -1,13 +1,23 @@
-import { CssBaseline, Stack } from '@mui/material';
 import { Fragment } from 'react';
+import { Button, CssBaseline } from '@mui/material';
 
 function App() {
   return (
     <Fragment>
       <CssBaseline />
-      <Stack direction="column" minWidth="100vw" minHeight="100vh" sx={{ backgroundColor: '#F0F0F0' }}>
-        <Stack direction="row"></Stack>
-      </Stack>
+      <Button
+        variant="contained"
+        sx={{
+          fontFamily: 'WebNanumSquareNeo',
+          fontSize: '12px',
+          mt: '10px',
+          ml: '10px',
+          width: '160px',
+          backgroundColor: 'primary.main',
+        }}
+      >
+        지현랩
+      </Button>
     </Fragment>
   );
 }
