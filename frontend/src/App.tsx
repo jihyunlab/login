@@ -27,9 +27,6 @@ function App() {
         variant="contained"
         sx={{
           fontFamily: 'WebNanumSquareNeo',
-          fontSize: '12px',
-          mt: '10px',
-          ml: '10px',
           width: '160px',
           backgroundColor: 'primary.main',
         }}
