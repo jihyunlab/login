@@ -1,7 +1,25 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Button, CssBaseline } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { getLocale, setLocale } from './helpers/locale';
 
 function App() {
+  const { t, i18n } = useTranslation(['translation']);
+
+  useEffect(() => {
+    console.log('Language Changed');
+  }, [i18n.language]);
+
+  const handleClick = () => {
+    const locale = getLocale();
+
+    if (locale === 'ko-KR') {
+      setLocale('en-US');
+    } else {
+      setLocale('ko-KR');
+    }
+  };
+
   return (
     <Fragment>
       <CssBaseline />
@@ -15,8 +33,9 @@ function App() {
           width: '160px',
           backgroundColor: 'primary.main',
         }}
+        onClick={() => handleClick()}
       >
-        지현랩
+        {t('jihyunlab')}
       </Button>
     </Fragment>
   );
