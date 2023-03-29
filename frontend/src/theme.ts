@@ -10,14 +10,10 @@ const theme = createTheme({
     fontFamily: 'WebNanumSquareNeo',
   },
   components: {
-    MuiCssBaseline: {
-      styleOverrides: `
-        @font-face {
-          font-family: 'WebNanumSquareNeo';
-        }
-      `,
-    },
     MuiButton: {
+      defaultProps: {
+        variant: 'contained',
+      },
       styleOverrides: {
         root: {
           fontSize: '0.69rem',

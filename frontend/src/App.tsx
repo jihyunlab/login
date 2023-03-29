@@ -1,7 +1,8 @@
-import { Fragment, useEffect } from 'react';
-import { Button, CssBaseline } from '@mui/material';
+import { useEffect } from 'react';
+import { Button, CssBaseline, ThemeProvider } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { getLocale, setLocale } from './helpers/locale';
+import { theme } from './theme';
 
 function App() {
   const { t, i18n } = useTranslation(['translation']);
@@ -21,20 +22,18 @@ function App() {
   };
 
   return (
-    <Fragment>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <Button
-        variant="contained"
         sx={{
-          fontFamily: 'WebNanumSquareNeo',
-          width: '160px',
-          backgroundColor: 'primary.main',
+          mt: '10px',
+          ml: '10px',
         }}
         onClick={() => handleClick()}
       >
         {t('jihyunlab')}
       </Button>
-    </Fragment>
+    </ThemeProvider>
   );
 }
 
