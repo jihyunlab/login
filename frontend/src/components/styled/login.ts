@@ -12,18 +12,50 @@ export const LoginContainer = styled(Box)<BoxProps>(() => ({
   backgroundColor: '#F0F0F0',
 }));
 
-export const LoginHeader = styled(Box)<BoxProps>(() => ({
+export const LoginHeader = styled(Box)<BoxProps>((props) => ({
   display: 'flex',
   flexDirection: 'row',
   width: '23.75rem',
+  [props.theme.breakpoints.down('sm')]: {
+    width: '19.5rem',
+  },
   height: '2.75rem',
   padding: '0 1.125rem 0 1.125rem',
   border: '0.0625rem solid #DEE2E6',
   borderRadius: '0.5rem 0.5rem 0 0',
   borderBottom: '0rem',
   backgroundColor: '#FFFFFF',
-  fontSize: '0.875rem',
-  fontWeight: 'bold',
   alignItems: 'center',
   justifyContent: 'space-between',
+}));
+
+export const LoginContent = styled(Box)<BoxProps>((props) => ({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(1, 1fr)',
+  width: '23.75rem',
+  [props.theme.breakpoints.down('sm')]: {
+    width: '19.5rem',
+  },
+  rowGap: '0.75rem',
+  padding: '0.75rem 1.125rem 0.75rem 1.125rem',
+  border: '0.0625rem solid #DEE2E6',
+  borderRadius: '0 0 0 0',
+  backgroundColor: '#FFFFFF',
+}));
+
+export const LoginFooter = styled(Box)<BoxProps>((props) => ({
+  display: 'flex',
+  flexDirection: 'row',
+  width: '23.75rem',
+  [props.theme.breakpoints.down('sm')]: {
+    width: '19.5rem',
+  },
+  height: '2.75rem',
+  padding: '0 1.125rem 0 1.125rem',
+  border: '0.0625rem solid #DEE2E6',
+  borderRadius: '0 0 0.5rem 0.5rem',
+  borderTop: '0rem',
+  backgroundColor: '#FFFFFF',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
 }));
