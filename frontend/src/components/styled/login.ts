@@ -3,10 +3,9 @@ import { Box, BoxProps, styled } from '@mui/material';
 export const LoginContainer = styled(Box)<BoxProps>(() => ({
   display: 'flex',
   flexDirection: 'column',
-  minWidth: '100vw',
-  minHeight: '100vh',
-  marginTop: '-3.25rem',
-  padding: '0 1.5rem 0 1.5rem',
+  minWidth: '100%',
+  minHeight: '100%',
+  padding: '0 1.5rem 3.25rem 1.5rem',
   alignItems: 'center',
   justifyContent: 'center',
   backgroundColor: '#F0F0F0',
