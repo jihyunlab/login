@@ -17,11 +17,11 @@ function Login() {
     setError(() => '');
 
     if (!record.email || !record.password) {
-      setError(() => 'enterEmailAndPassword');
+      setError(() => 'enter_email_and_password');
       return;
     }
 
-    setError(() => 'loginFailed');
+    setError(() => 'login_failed');
   };
 
   return (
@@ -39,7 +39,7 @@ function Login() {
           placeholder={t('email') || ''}
           onChange={(event) => setRecord({ ...record, email: event.target.value })}
           error={record.email === '' ? true : false}
-          helperText={record.email === '' ? t('enterEmail') : ''}
+          helperText={record.email === '' ? t('enter_email') : ''}
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
               event.preventDefault();
@@ -56,7 +56,7 @@ function Login() {
           placeholder={t('password') || ''}
           onChange={(event) => setRecord({ ...record, password: event.target.value })}
           error={record.password === '' ? true : false}
-          helperText={record.password === '' ? t('enterPassword') : ''}
+          helperText={record.password === '' ? t('enter_password') : ''}
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
               event.preventDefault();
