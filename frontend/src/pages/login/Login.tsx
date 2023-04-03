@@ -17,11 +17,11 @@ function Login() {
     setError(() => '');
 
     if (!record.email || !record.password) {
-      setError(() => t('enterEmailAndPassword'));
+      setError(() => 'enterEmailAndPassword');
       return;
     }
 
-    setError(() => t('loginFailed'));
+    setError(() => 'loginFailed');
   };
 
   return (
@@ -66,13 +66,12 @@ function Login() {
         />
         {error && error !== '' && (
           <Typography color="error" sx={{ ml: '0.875rem', fontSize: '0.75rem', fontWeight: 'bold' }}>
-            {error}
+            {t(error)}
           </Typography>
         )}
       </LoginContent>
       <LoginFooter>
         <Button
-          variant="contained"
           onClick={(event) => {
             event.preventDefault();
             handleLogin();
