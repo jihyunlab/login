@@ -2,8 +2,8 @@
   "login": "로그인",
   "email": "이메일",
   "password": "비밀번호",
-  "enter_email": "이메일을 입력해 주세요.",
-  "enter_password": "비밀번호를 입력해 주세요.",
-  "enter_email_and_password": "이메일과 비밀번호를 입력해 주세요.",
-  "login_failed": "로그인에 실패하였습니다."
+  "enterEmail": "이메일을 입력해 주세요.",
+  "enterPassword": "비밀번호를 입력해 주세요.",
+  "enterEmailAndPassword": "이메일과 비밀번호를 입력해 주세요.",
+  "loginFailed": "로그인에 실패하였습니다."
 }

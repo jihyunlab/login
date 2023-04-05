@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { LoginContainer, LoginContent, LoginFooter, LoginHeader } from '../../components/styled/login';
 import { useTranslation } from 'react-i18next';
+import { useLoginMutation } from '../../services/authApi';
 import Locale from '../../components/locale/Locale';
 
 function Login() {
@@ -13,15 +14,26 @@ function Login() {
   });
   const [error, setError] = useState<string>('');
 
-  const handleLogin = () => {
+  const [login] = useLoginMutation();
+
+  const handleLogin = async () => {
     setError(() => '');
 
     if (!record.email || !record.password) {
-      setError(() => 'enter_email_and_password');
+      setError(() => 'enterEmailAndPassword');
       return;
     }
 
-    setError(() => 'login_failed');
+    await login(record)
+      .unwrap()
+      .then((response) => {
+        // setToken(response.access_token);
+        // navigate('/home');
+        console.log(response.access_token);
+      })
+      .catch(() => {
+        setError(() => 'loginFailed');
+      });
   };
 
   return (
@@ -39,7 +51,7 @@ function Login() {
           placeholder={t('email') || ''}
           onChange={(event) => setRecord({ ...record, email: event.target.value })}
           error={record.email === '' ? true : false}
-          helperText={record.email === '' ? t('enter_email') : ''}
+          helperText={record.email === '' ? t('enterEmail') : ''}
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
               event.preventDefault();
@@ -56,7 +68,7 @@ function Login() {
           placeholder={t('password') || ''}
           onChange={(event) => setRecord({ ...record, password: event.target.value })}
           error={record.password === '' ? true : false}
-          helperText={record.password === '' ? t('enter_password') : ''}
+          helperText={record.password === '' ? t('enterPassword') : ''}
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
               event.preventDefault();

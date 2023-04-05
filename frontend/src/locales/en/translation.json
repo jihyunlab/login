@@ -2,8 +2,8 @@
   "login": "Login",
   "email": "Email",
   "password": "Password",
-  "enter_email": "Please enter your email.",
-  "enter_password": "Please enter your password.",
-  "enter_email_and_password": "Please enter your email and password.",
-  "login_failed": "Login failed."
+  "enterEmail": "Please enter your email.",
+  "enterPassword": "Please enter your password.",
+  "enterEmailAndPassword": "Please enter your email and password.",
+  "loginFailed": "Login failed."
 }
