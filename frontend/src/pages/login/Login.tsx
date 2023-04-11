@@ -4,6 +4,7 @@ import { LoginContainer, LoginContent, LoginFooter, LoginHeader } from '../../co
 import { useTranslation } from 'react-i18next';
 import { useLoginMutation } from '../../services/authApi';
 import Locale from '../../components/locale/Locale';
+import { setToken } from '../../helpers/jwt';
 
 function Login() {
   const { t } = useTranslation(['translation']);
@@ -27,9 +28,8 @@ function Login() {
     await login(record)
       .unwrap()
       .then((response) => {
-        // setToken(response.access_token);
+        setToken(response.access_token);
         // navigate('/home');
-        console.log(response.access_token);
       })
       .catch(() => {
         setError(() => 'loginFailed');
