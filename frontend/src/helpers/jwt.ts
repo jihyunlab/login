@@ -10,7 +10,11 @@ export interface JWTInfo {
 }
 
 export const getToken = (): string | null => {
-  return storage.getItem('token');
+  try {
+    return storage.getItem('token');
+  } catch (e) {
+    return null;
+  }
 };
 
 export const setToken = (token: string) => {

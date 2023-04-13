@@ -3,11 +3,13 @@ import { Box, Button, TextField, Typography } from '@mui/material';
 import { LoginContainer, LoginContent, LoginFooter, LoginHeader } from '../../components/styled/login';
 import { useTranslation } from 'react-i18next';
 import { useLoginMutation } from '../../services/authApi';
-import Locale from '../../components/locale/Locale';
 import { setToken } from '../../helpers/jwt';
+import { useNavigate } from 'react-router-dom';
+import Locale from '../../components/locale/Locale';
 
 function Login() {
   const { t } = useTranslation(['translation']);
+  const navigate = useNavigate();
 
   const [record, setRecord] = useState<Record<string, string | undefined>>({
     email: undefined,
@@ -29,7 +31,7 @@ function Login() {
       .unwrap()
       .then((response) => {
         setToken(response.access_token);
-        // navigate('/home');
+        navigate('/home');
       })
       .catch(() => {
         setError(() => 'loginFailed');
