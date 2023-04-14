@@ -40,7 +40,7 @@ function Login() {
 
   return (
     <LoginContainer>
-      <Box component="img" width="11.25rem" sx={{ mb: '0.25rem' }} src="logo.png" />
+      <Box component="img" width="11.25rem" sx={{ mb: '0.25rem' }} src="/logo.png" />
       <LoginHeader>
         <Typography sx={{ fontSize: '0.875rem', fontWeight: 'bold' }}>{t('login')}</Typography>
         <Locale />
