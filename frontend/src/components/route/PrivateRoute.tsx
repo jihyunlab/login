@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { getToken } from '../../helpers/jwt';
 
 export interface PrivateRouteProps {
-  errorElement: React.ReactElement | null;
+  errorElement: React.ReactElement;
   children?: React.ReactNode;
 }
 

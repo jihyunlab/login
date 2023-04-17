@@ -1,17 +1,14 @@
-import { Navigate } from 'react-router-dom';
-import { RouteProps } from './components/route/Router';
+import { Navigate, RouteObject } from 'react-router-dom';
 import Login from './pages/login/Login';
 import Home from './pages/home/Home';
+import PrivateRoute from './components/route/PrivateRoute';
 
-export const routes: Array<RouteProps> = [
-  { key: '/', path: '/', element: <Navigate to="/home" replace /> },
-  { key: '/login', path: 'login', element: <Login /> },
+export const routes: RouteObject[] = [
+  { path: '/', element: <Navigate to="/home" replace /> },
+  { path: 'login', element: <Login /> },
   {
-    key: '/home',
-    path: 'home',
-    element: <Home />,
-    loginRequired: true,
-    errorElement: <Navigate to="/login" replace />,
+    element: <PrivateRoute errorElement={<Navigate to="/login" replace />} />,
+    children: [{ path: 'home', element: <Home /> }],
   },
-  { key: '*', path: '*', element: <Navigate to="/login" replace /> },
+  { path: '*', element: <Navigate to="/login" replace /> },
 ];

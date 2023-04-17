@@ -1,18 +1,15 @@
 import { Box, CssBaseline, ThemeProvider } from '@mui/material';
+import { useRoutes } from 'react-router-dom';
 import { theme } from './theme';
-import { BrowserRouter } from 'react-router-dom';
 import { routes } from './route';
-import Router from './components/route/Router';
 
 function App() {
+  const router = useRoutes(routes);
+
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <CssBaseline />
-        <Box sx={{ width: '100vw', height: '100vh' }}>
-          <Router routes={routes} />
-        </Box>
-      </BrowserRouter>
+      <CssBaseline />
+      <Box sx={{ width: '100vw', height: '100vh' }}>{router}</Box>
     </ThemeProvider>
   );
 }
