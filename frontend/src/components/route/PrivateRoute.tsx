@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import { getToken } from '../../helpers/jwt';
+import { useAppSelector } from '../../hooks/hook';
+import { selectSignin } from '../../slices/authSlice';
 
 export interface PrivateRouteProps {
   errorElement: React.ReactElement;
@@ -7,7 +8,9 @@ export interface PrivateRouteProps {
 }
 
 function PrivateRoute({ errorElement }: PrivateRouteProps): React.ReactElement | null {
-  return getToken() ? <Outlet /> : errorElement;
+  const signin = useAppSelector(selectSignin);
+
+  return signin ? <Outlet /> : errorElement;
 }
 
 export default PrivateRoute;
