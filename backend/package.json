@@ -1,9 +1,9 @@
 {
   "name": "@jihyunlab/login-backend",
   "version": "1.0.0",
-  "description": "JihyunLab login backend.",
+  "description": "JihyunLab Login backend.",
   "license": "MIT",
-  "author": "JihyunLab <jihyunlab@gmail.com> (https://github.com/jihyunlab)",
+  "author": "JihyunLab <info@jihyunlab.com> (https://jihyunlab.com)",
   "private": true,
   "scripts": {
     "build": "nest build",

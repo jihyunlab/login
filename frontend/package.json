@@ -1,9 +1,9 @@
 {
   "name": "@jihyunlab/login-frontend",
   "version": "1.0.0",
-  "description": "JihyunLab login frontend.",
+  "description": "JihyunLab Login frontend.",
   "license": "MIT",
-  "author": "JihyunLab <jihyunlab@gmail.com> (https://github.com/jihyunlab)",
+  "author": "JihyunLab <info@jihyunlab.com> (https://jihyunlab.com)",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
